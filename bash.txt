@@ -1,0 +1,20 @@
+#!/bin/sh
+
+rm -rf last_seed_file
+rm -rf *.txt *.plt *.dat *.pcap
+   
+for n in 1
+        do
+
+        for txpDistance in 25
+        do
+            ./waf --run "scratch/epidemic-benchmark --txpDistance=${txpDistance}" > results25.dat 2>&1
+         
+            printf "${znas_ratio},${sanz_kasnjenje},$(grep "procenat uspjesnosti" results25.dat ),$(grep "kasnjenje" results25.dat )\n"
+            
+            #rm -rf last_seed_file
+            #rm -rf *.txt *.plt *.dat *.pcap
+        done 
+done
+
+
